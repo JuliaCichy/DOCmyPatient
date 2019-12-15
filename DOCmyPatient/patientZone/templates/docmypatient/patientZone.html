@@ -1,17 +1,16 @@
+{% extends "docmypatient/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'patientZone/main.css' %}">
-    <title></title>
-</head>
-<body>
+{% block content %}
     <h1>Comments</h1>
     {% for notes in comments %}
-        <h3>{{ notes.nurse_comment }}</h3>
-        <p>By {{ notes.nurse_name }} on {{ notes.date_posted }}</p>
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ notes.nurse_name }}</a>
+              <small class="text-muted">{{ notes.date_posted }}</small>
+            </div>
+            <p class="article-content">{{ notes.nurse_comment}}</p>
+          </div>
+        </article>
     {% endfor %}
-
-</body>
-</html>
+{% endblock content %}
