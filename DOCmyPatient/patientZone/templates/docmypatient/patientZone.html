@@ -7,15 +7,11 @@
     <title></title>
 </head>
 <body>
-<h1> Home pages </h1>
-
-<div>
-
-  <h3>This is a heading</h3>
-  <p>This is a paragraph.</p>
-
-
-</div>
+    <h1>Comments</h1>
+    {% for notes in comments %}
+        <h3>{{ notes.nurse_comment }}</h3>
+        <p>By {{ notes.nurse_name }} on {{ notes.date_posted }}</p>
+    {% endfor %}
 
 </body>
 </html>
