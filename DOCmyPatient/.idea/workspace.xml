@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6209cbb-8fc8-49bb-8349-802212a46086" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/users/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/templates/users/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/templates/users/logout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/templates/users/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DOCmyPatient/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/DOCmyPatient/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DOCmyPatient/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DOCmyPatient/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/patientZone/static/patientZone/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/patientZone/static/patientZone/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/patientZone/templates/docmypatient/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/patientZone/templates/docmypatient/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/patientZone/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/patientZone/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patientZone/templates/docmypatient/patientZone.html" beforeDir="false" afterPath="$PROJECT_DIR$/patientZone/templates/docmypatient/patientZone.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patientZone/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/patientZone/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +36,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
@@ -75,8 +69,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1576348265087</updated>
+      <workItem from="1576618337562" duration="7100000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -92,13 +90,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="421" y="284" key="com.intellij.ide.util.TipDialog" timestamp="1576622354299">
+    <state x="386" y="85" width="667" height="750" key="find.popup" timestamp="1576698816012">
       <screen x="0" y="0" width="1440" height="920" />
     </state>
-    <state x="421" y="284" key="com.intellij.ide.util.TipDialog/0.0.1440.920@0.0.1440.920" timestamp="1576622354299" />
-    <state x="416" y="66" width="609" height="789" key="find.popup" timestamp="1576622372213">
-      <screen x="0" y="0" width="1440" height="920" />
-    </state>
-    <state x="416" y="66" width="609" height="789" key="find.popup/0.0.1440.920@0.0.1440.920" timestamp="1576622372213" />
+    <state x="386" y="85" width="667" height="750" key="find.popup/0.0.1440.920@0.0.1440.920" timestamp="1576698816012" />
+    <state x="386" y="104" width="667" height="714" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1576623779247" />
   </component>
 </project>
