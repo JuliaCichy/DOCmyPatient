@@ -48,18 +48,10 @@
                 </form>
             </div>
         </div>
-<!--        <div class="col-md-3">-->
-<!--            <div class="container-fluid">-->
-<!--                <button id="submitBtn">-->
-<!--                    Submit-->
-<!--                </button>-->
-<!--            </div>-->
-<!--        </div>-->
         <form method="POST" action="{% url 'addPatientComment' %}">
             {% csrf_token %}
             <input id="commentData" type="text" name="commentData">
             <button type="submit"> Submit </button>
-
         </form>
     </div>
 </div>

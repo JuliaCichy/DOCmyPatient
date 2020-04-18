@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Comments
-
+from django.contrib.auth.models import User
+from .forms import CommentsForm
+import datetime
 
 def home(request):
     context = {
@@ -10,15 +12,29 @@ def home(request):
 
 
 def addComment(request):
-    if request == 'POST':
-
+    # Check if the request is a POST method
+    if request.method == 'POST':
+        # Get the comment and user details from the request
         nurse_comment = request.POST.get('commentData')
-        current_user = request.user
-        comment = Comments(nurse_comment=nurse_comment, nurse_name=current_user)
+        user_id = request.user.id
+        user = User.objects.get(id=user_id)
+        now = datetime.datetime.now()
 
-        if form.is_valid():
-            comment.save()
-            messages.success(request,"Comment added!")
+        # Post to the comments form
+        comments_form = CommentsForm(data={'nurse_comment': nurse_comment,
+                                           'date_posted': now,
+                                           'nurse_name': user})
+        # Check if its vaild
+        if comments_form.is_valid():
+            # Create Comment object but don't save to database yet
+            new_comment = comments_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.nurse_comment = nurse_comment
+            new_comment.nurse_name = user
+            # Save the comment to the database
+            new_comment.save()
+            return redirect('docmypatient')
+        else:
             return redirect('docmypatient')
 
     else:
