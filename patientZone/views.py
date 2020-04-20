@@ -10,15 +10,13 @@ def home(request):
     users = User.objects.all()
     users_list = []
     for user in users:
-        print(user)
         try:
-            print(user.patient.doctor.first_name + " NAME!")
-            if user.patient.doctor:
+            if user.patient.doctor.id == 1:
                 users_list.append(user)
         except:
             continue
     context = {
-        'user': users_list
+        'users': users_list
     }
     return render(request, 'docmypatient/patientZone.html', context)
 
