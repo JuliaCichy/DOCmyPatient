@@ -1,12 +1,24 @@
 from django.shortcuts import render, redirect
 from .models import Comments
+from users.models import Patient
 from django.contrib.auth.models import User
 from .forms import CommentsForm
 import datetime
 
+
 def home(request):
+    users = User.objects.all()
+    users_list = []
+    for user in users:
+        print(user)
+        try:
+            print(user.patient.doctor.first_name + " NAME!")
+            if user.patient.doctor:
+                users_list.append(user)
+        except:
+            continue
     context = {
-        'comments': Comments.objects.all()
+        'user': users_list
     }
     return render(request, 'docmypatient/patientZone.html', context)
 

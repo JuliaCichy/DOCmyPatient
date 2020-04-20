@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6209cbb-8fc8-49bb-8349-802212a46086" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/patientZone/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/patientZone/templates/docmypatient/patientZone.html" beforeDir="false" afterPath="$PROJECT_DIR$/patientZone/templates/docmypatient/patientZone.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/patientZone/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/patientZone/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +91,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="874" y="-806" key="FileChooserDialogImpl" timestamp="1587416841264">
+      <screen x="134" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="874" y="-806" key="FileChooserDialogImpl/0.0.1440.920/134.-1080.1920.1040@134.-1080.1920.1040" timestamp="1587416841264" />
     <state x="222" y="103" key="SettingsEditor" timestamp="1582394659112">
       <screen x="0" y="0" width="1440" height="920" />
     </state>

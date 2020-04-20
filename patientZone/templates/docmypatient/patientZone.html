@@ -9,30 +9,20 @@
                 <a href="https://placeholder.com"><img src="https://via.placeholder.com/150"></a>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="container-fluid" id="rightInfo">
-                <h3>Information</h3>
-                <h4>Name: Mary Sweeney</h4>
-                <h4>Sex: Female</h4>
-                <h4>Address: 21 Main Street, Co. Cavan, Ireland</h4>
-                <h4>PPSN: 1342456B</h4>
-                <h4>Medical Card Number: 55678423</h4>
-            </div>
-        </div>
     </div>
 
     <div class="row">
         <div class ="col-md-12">
             <div class="container-fluid">
                 <h3>Comments</h3>
-                {% for notes in comments %}
+                {% for user in users %}
                     <article class="media content-section">
                       <div class="media-body">
                         <div class="article-metadata">
-                          <a class="mr-2" href="#">{{ notes.nurse_name }}</a>
-                          <small class="text-muted">{{ notes.date_posted }}</small>
+                          <a class="mr-2" href="#">{{ user.patient.last_name }}</a>
+                          <small class="text-muted">{{ user.patient.first_name }}</small>
                         </div>
-                        <p class="article-content">{{ notes.nurse_comment}}</p>
+                        <p class="article-content">{{ user.patient.doctor.first_nam}}</p>
                       </div>
                     </article>
                 {% endfor %}
@@ -41,13 +31,6 @@
     </div>
 
     <div class="row">
-        <div class="col-md-9">
-            <div class="container-fluid">
-                <form>
-                    <input type="text" size="100" id="textField">
-                </form>
-            </div>
-        </div>
         <form method="POST" action="{% url 'addPatientComment' %}">
             {% csrf_token %}
             <input id="commentData" type="text" name="commentData">
