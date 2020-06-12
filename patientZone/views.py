@@ -1,6 +1,4 @@
 from django.shortcuts import render, redirect
-from .models import Comments
-from users.models import Patient
 from django.contrib.auth.models import User
 from .forms import CommentsForm
 import datetime
@@ -11,7 +9,7 @@ def home(request):
     users_list = []
     for user in users:
         try:
-            if user.patient.doctor.id == 1:
+            if user.patient.doctor.id == request.user.doctor.id:
                 users_list.append(user)
         except:
             continue
@@ -19,6 +17,10 @@ def home(request):
         'users': users_list
     }
     return render(request, 'docmypatient/patientZone.html', context)
+
+
+def patient(request, user_id):
+    return render(request, 'docmypatient/patientPage.html')
 
 
 def addComment(request):
