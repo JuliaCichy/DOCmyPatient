@@ -3,14 +3,6 @@
 {% block content %}
 
 <div class="container">
-    <div class="row" id="rowOne">
-        <div class="col-md-6">
-            <div class="container-fluid" id="leftPic">
-                <a href="https://placeholder.com"><img src="https://via.placeholder.com/150"></a>
-            </div>
-        </div>
-    </div>
-
     <div class="row">
         <div class ="col-md-12">
             <div class="container-fluid">
@@ -19,7 +11,7 @@
                     <article class="media content-section">
                       <div class="media-body">
                         <div class="article-metadata">
-                            <a href="{% url 'patientPage' user_id=user.patient.id %}">{{ user.patient.last_name }}</a>
+                            <a href="{% url 'patientPage' patient_id=user.id %}">{{ user.patient.last_name }}</a>
                             <p>{{ user.patient.first_name }}</p>
                             <p>{{ user.patient.doctor }}</p>
                         </div>
@@ -28,14 +20,6 @@
                 {% endfor %}
             </div>
         </div>
-    </div>
-
-    <div class="row">
-        <form method="POST" action="{% url 'addPatientComment' %}">
-            {% csrf_token %}
-            <input id="commentData" type="text" name="commentData">
-            <button type="submit"> Submit </button>
-        </form>
     </div>
 </div>
 

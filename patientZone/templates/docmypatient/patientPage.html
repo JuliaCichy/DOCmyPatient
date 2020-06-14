@@ -2,31 +2,46 @@
 {% load static %}
 {% block content %}
 
-<div class="container">
-    <div class="row" id="rowOne">
-        <div class="col-md-6">
-            <div class="container-fluid" id="leftPic">
-                <a href="https://placeholder.com"><img src="https://via.placeholder.com/150"></a>
-            </div>
-        </div>
+<div class="col-md-6">
+    <div class="container-fluid" id="rightInfo">
+        <h3>Information</h3>
+        <h4>Last Name: {{ patient.patient.last_name }}</h4>
+		<h4>First Name: {{ patient.patient.first_name }}</h4>
+        <h4>Sex: {{ patient.patient.sex }}</h4>
+        <h4>Address: {{ patient.patient.address }}</h4>
+        <h4>PPSN: {{ patient.patient.ppsn }}</h4>
+        <h4>Medical Card Number: {{ patient.patient.medical_card_num }}</h4>
+		<h4>Emergency Contact: {{ patient.patient.emergency_contact }}</h4>
     </div>
+</div>
 
+<form method="POST" action="{% url 'addPatientComment' patient_id=patient.id %}">
+    {% csrf_token %}
+    <input id="commentData" type="text" name="commentData">
+    <button type="submit"> Submit </button>
+</form>
 
+{% for comment in comments %}
+<article class="media content-section">
+  <div class="media-body">
+	<div class="article-metadata">
+		<p>{{ comment }}</p>
+		<p>{{ comment.staff_name }}</p>
+		<p>{{ comment.date_posted }}</p>
+		<p>{{ comment.opened }}</p>
+		{% if not comment.opened %}
+			<form method="POST" action="{% url 'openPatientComment' patient_id=patient.id comment_id=comment.id %}">
+				{% csrf_token %}
+				<button type="submit">Mark as Open</button>
+			</form>
+		{% endif %}
 
-<main role="main" class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="content-section">
-            <h3>Options</h3>
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">New Patient</li>
-                <li class="list-group-item list-group-item-light">Reports</li>
-                <li class="list-group-item list-group-item-light">Update Family</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-            </p>
-          </div>
-        </div>
-      </div>
-    </main>
+		<form method="POST" action="{% url 'deletePatientComment' patient_id=patient.id comment_id=comment.id %}">
+		    {% csrf_token %}
+		    <button type="submit">DELETE</button>
+		</form>
+	</div>
+  </div>
+</article>
+{% endfor %}
 {% endblock %}

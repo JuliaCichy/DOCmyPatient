@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6209cbb-8fc8-49bb-8349-802212a46086" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/patientZone/templates/docmypatient/patientPage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/patientZone/static/patientZone/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/patientZone/static/patientZone/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patientZone/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/patientZone/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patientZone/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/patientZone/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/patientZone/templates/docmypatient/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/patientZone/templates/docmypatient/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patientZone/templates/docmypatient/patientPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/patientZone/templates/docmypatient/patientPage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/patientZone/templates/docmypatient/patientZone.html" beforeDir="false" afterPath="$PROJECT_DIR$/patientZone/templates/docmypatient/patientZone.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/patientZone/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/patientZone/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/patientZone/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/patientZone/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +40,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/OneDrive/4th year/DOCmyPatient" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -94,21 +95,14 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="874" y="-806" key="FileChooserDialogImpl" timestamp="1587416841264">
-      <screen x="134" y="-1080" width="1920" height="1040" />
+    <state x="555" y="242" key="FileChooserDialogImpl" timestamp="1592171275243">
+      <screen x="0" y="0" width="1440" height="920" />
     </state>
     <state x="874" y="-806" key="FileChooserDialogImpl/0.0.1440.920/134.-1080.1920.1040@134.-1080.1920.1040" timestamp="1587416841264" />
-    <state x="222" y="103" key="SettingsEditor" timestamp="1582394659112">
+    <state x="555" y="242" key="FileChooserDialogImpl/0.0.1440.920@0.0.1440.920" timestamp="1592171275243" />
+    <state x="773" y="132" width="667" height="750" key="find.popup" timestamp="1591960796797">
       <screen x="0" y="0" width="1440" height="920" />
     </state>
-    <state x="222" y="103" key="SettingsEditor/0.0.1440.920@0.0.1440.920" timestamp="1582394659112" />
-    <state x="773" y="132" width="667" height="750" key="find.popup" timestamp="1587664743721">
-      <screen x="0" y="0" width="1440" height="920" />
-    </state>
-    <state x="773" y="132" width="667" height="750" key="find.popup/0.0.1440.920@0.0.1440.920" timestamp="1587664743721" />
-    <state x="383" y="195" width="672" height="678" key="search.everywhere.popup" timestamp="1582480661925">
-      <screen x="0" y="0" width="1440" height="920" />
-    </state>
-    <state x="383" y="195" width="672" height="678" key="search.everywhere.popup/0.0.1440.920@0.0.1440.920" timestamp="1582480661925" />
+    <state x="773" y="132" width="667" height="750" key="find.popup/0.0.1440.920@0.0.1440.920" timestamp="1591960796797" />
   </component>
 </project>

@@ -41,7 +41,7 @@ class Patient(models.Model):
     ppsn = models.CharField(max_length=15)
     medical_card_num = models.CharField(max_length=15, null=True)
     emergency_contact = models.CharField(max_length=15, null=True)
-    ec_phone_number = models.IntegerField
+    ec_phone_number = models.IntegerField(null=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     dob = models.DateField()
