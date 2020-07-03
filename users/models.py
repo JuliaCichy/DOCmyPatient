@@ -9,7 +9,7 @@ SEX = (
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     dob = models.DateField()
@@ -19,7 +19,7 @@ class Profile(models.Model):
     is_patient = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.username
+        return "{}, {}".format(self.last_name, self.first_name)
 
 
 class Doctor(models.Model):
@@ -28,7 +28,7 @@ class Doctor(models.Model):
     doc_reg_num = models.CharField(max_length=25)
 
     def __str__(self):
-        return self.profile.user.username
+        return "Dr. {} {}".format(self.profile.first_name, self.profile.last_name)
 
 
 class Nurse(models.Model):
@@ -36,19 +36,20 @@ class Nurse(models.Model):
     ward = models.CharField(max_length=25)
 
     def __str__(self):
-        return self.profile.user.username
+        return "Nurse {} {}".format(self.profile.first_name, self.profile.last_name)
 
 
 class Patient(models.Model):
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, null=True)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     address = models.CharField(max_length=100)
-    phone_number = models.IntegerField()
+    phone_number = models.IntegerField(null=True)
     ppsn = models.CharField(max_length=15)
     medical_card_num = models.CharField(max_length=15, null=True)
-    emergency_contact = models.CharField(max_length=15, null=True)
-    ec_phone_number = models.IntegerField()
+    emergency_contact = models.CharField(max_length=25, null=True)
+    ec_phone_number = models.IntegerField(null=True)
+    ec_email_address = models.CharField(max_length=50, null=True)
 
     def __str__(self):
-        return self.profile.user.username
+        return "{}, {}".format(self.profile.last_name, self.profile.first_name)
 

@@ -4,23 +4,46 @@
 
     <form method="POST">
         {% csrf_token %}
-        <input id="" type="text" name="commentData">
+        <label for="doctor">Doctor: </label><select id="doctor" name="doctor">
+                                                <option disabled selected value> -- select a doctor -- </option>
+                                                {% for doc in doctors %}
+                                                     <option value={{ doc.id }}>{{ doc }}</option>
+                                                {% endfor %}
+                                            </select>
         <br>
-        <input id="" type="text" name="commentData">
+        <label for="first_name">First Name: </label><input id="first_name" type="text" name="first_name" required>
         <br>
-        <input id="" type="text" name="commentData">
+        <label for="last_name">Last Name: </label><input id="last_name" type="text" name="last_name" required>
         <br>
-        <input id="" type="text" name="commentData">
+        <label for="dob">Date of Birth: </label><input id="dob" type="date" name="dob">
         <br>
-        <input id="" type="text" name="commentData">
+        <label for="sex">Sex: </label><select id="sex" name="sex">
+                                        <option value="Other">Other</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
         <br>
-        <input id="" type="text" name="commentData">
+        <label for="address">Address: </label><input id="address" type="text" name="address" required>
         <br>
-        <input id="" type="text" name="commentData">
+        <label for="phone_number">Phone Number: </label><input id="phone_number" type="text" name="phone_number">
         <br>
-        <input id="" type="text" name="commentData">
+        <label for="ppsn">PPSN: </label><input id="ppsn" type="text" name="ppsn" required>
+        <br>
+        <label for="medical_card_num">Medical Card Number: </label><input id="medical_card_num" type="text" name="medical_card_num">
+        <br>
+        <label for="emergency_contact">Emergency Contact: </label><input id="emergency_contact" type="text" name="emergency_contact">
+        <br>
+        <label for="ec_phone_number">EC Phone Number: </label><input id="ec_phone_number" type="number" name="ec_phone_number">
+        <br>
+        <label for="ec_email_address">EC Email Address: </label><input id="ec_email_address" type="text" name="ec_email_address">
         <br>
         <button type="submit"> Submit </button>
+        <br>
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
     </form>
 
 

@@ -1,18 +1,20 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from users.models import Profile, Patient, Doctor
 from .models import Comment
 from .forms import CommentForm
 import datetime
+from django.contrib import messages
 
 
 @login_required
 def home(request):
     if request.user.profile.is_doctor:
-        users = User.objects.all()
+        users = Profile.objects.filter(is_patient=True)
         users_list = []
         for user in users:
-            if user.profile.is_patient and user.profile.patient.doctor.id == request.user.profile.doctor.id:
+            if user.patient.doctor.id == request.user.profile.doctor.id:
                 users_list.append(user)
         context = {
             'users': users_list
@@ -20,11 +22,10 @@ def home(request):
         return render(request, 'docmypatient/patientZone.html', context)
 
     elif request.user.profile.is_nurse:
-        users = User.objects.all()
+        users = Profile.objects.filter(is_patient=True)
         users_list = []
         for user in users:
-            if user.profile.is_patient:
-                users_list.append(user)
+            users_list.append(user)
         context = {
             'users': users_list
         }
@@ -36,21 +37,21 @@ def home(request):
 
 def patient(request, patient_id):
     try:
-        patient = User.objects.get(id=patient_id)
+        profile = Profile.objects.get(id=patient_id)
         if request.user.profile.is_doctor:
-            if patient.profile.patient.doctor.id != request.user.profile.doctor.id:
+            if profile.patient.doctor.id != request.user.profile.doctor.id:
                 raise Exception
         elif request.user.profile.is_nurse:
             pass
         else:
             raise Exception
-
         context = {"comments": Comment.objects.filter(patient_id=patient_id),
-                   "patient": patient}
+                   "patient": profile}
 
         return render(request, 'docmypatient/patientPage.html', context)
 
-    except:
+    except Exception as e:
+        print(e)
         return redirect('docmypatient')
 
 
@@ -104,9 +105,39 @@ def open_comment(request, patient_id, comment_id):
 
 
 def add_patient(request):
-    print("HELLO THERE")
     if request.method == 'POST':
-        return render(request, 'docmypatient/addPatient.html')
-    else:
-        return render(request, 'docmypatient/addPatient.html')
+        if request.POST.get('first_name') and request.POST.get('last_name') \
+                and request.POST.get('address') and request.POST.get('ppsn'):
+            if check_user_exists(request.POST.get('ppsn')):
+                profile = Profile.objects.create(first_name=request.POST.get('first_name'),
+                                                 last_name=request.POST.get('last_name'),
+                                                 dob=request.POST.get('dob'),
+                                                 sex=request.POST.get('sex'),
+                                                 is_patient=True)
+                doctor = Doctor.objects.get(id=request.POST.get('doctor'))
+                Patient.objects.create(profile=profile,
+                                       doctor=doctor,
+                                       address=request.POST.get('address'),
+                                       phone_number=request.POST.get('phone_number'),
+                                       ppsn=request.POST.get('ppsn'),
+                                       medical_card_num=request.POST.get('medical_card_num'),
+                                       emergency_contact=request.POST.get('emergency_contact'),
+                                       ec_phone_number=request.POST.get('ec_phone_number'),
+                                       ec_email_address=request.POST.get('ec_email_address'))
+                return redirect('docmypatient')
 
+            else:
+                messages.error(request, "Error: A user with that PPSN already exists")
+    doctors = Doctor.objects.all()
+    doctors_list = []
+    for doc in doctors:
+        doctors_list.append(doc)
+
+    return render(request, 'docmypatient/addPatient.html', {'doctors': doctors_list})
+
+
+def check_user_exists(ppsn):
+    if Patient.objects.filter(ppsn=ppsn).exists():
+        return False
+    else:
+        return True

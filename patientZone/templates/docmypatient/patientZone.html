@@ -15,9 +15,9 @@
                     <article class="media content-section">
                       <div class="media-body">
                         <div class="article-metadata">
-                            <a href="{% url 'patientPage' patient_id=user.id %}">{{ user.profile.last_name }}</a>
-                            <p>{{ user.profile.first_name }}</p>
-                            <p>{{ user.profile.patient.doctor }}</p>
+                            <a href="{% url 'patientPage' patient_id=user.id %}">{{ user.last_name }}</a>
+                            <p>{{ user.first_name }}</p>
+                            <p>{{ user.patient.doctor }}</p>
                         </div>
                       </div>
                     </article>
