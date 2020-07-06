@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 SEX = (
-    ('F', 'Female'),
-    ('M', 'Male'),
-    ('O', 'Other'),
+    ('Female', 'Female'),
+    ('Male', 'Male'),
+    ('Other', 'Other'),
 )
 
 
@@ -13,10 +14,11 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     dob = models.DateField()
-    sex = models.CharField(max_length=1, choices=SEX)
+    sex = models.CharField(max_length=10, choices=SEX)
     is_nurse = models.BooleanField(default=False)
     is_doctor = models.BooleanField(default=False)
     is_patient = models.BooleanField(default=False)
+    profile_reference = models.CharField(max_length=30, null=True, blank=True)
 
     def __str__(self):
         return "{}, {}".format(self.last_name, self.first_name)
@@ -44,7 +46,7 @@ class Patient(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     address = models.CharField(max_length=100)
     phone_number = models.IntegerField(null=True)
-    ppsn = models.CharField(max_length=15)
+    ppsn = models.CharField(max_length=15, unique=True)
     medical_card_num = models.CharField(max_length=15, null=True)
     emergency_contact = models.CharField(max_length=25, null=True)
     ec_phone_number = models.IntegerField(null=True)

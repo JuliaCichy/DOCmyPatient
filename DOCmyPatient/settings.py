@@ -125,3 +125,10 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'docmypatient'
 LOGIN_URL = 'login'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'postmaster@sandboxfbdd6d90f94545e5abc4f6cab90e5977.mailgun.org'
+EMAIL_HOST_PASSWORD = 'cb07fff84351c43aa9a482a6472621ef-913a5827-6c391c0e'
+EMAIL_USE_TLS: False
+EMAIL_USE_SSL: False

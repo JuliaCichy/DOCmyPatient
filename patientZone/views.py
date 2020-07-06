@@ -5,8 +5,10 @@ from django.contrib.auth.models import User
 from users.models import Profile, Patient, Doctor
 from .models import Comment
 from .forms import CommentForm
+from .utils import get_profile_reference, check_user_exists
 import datetime
 from django.contrib import messages
+from django.core.mail import send_mail
 
 
 @login_required
@@ -160,7 +162,9 @@ def add_patient(request):
                                                  last_name=request.POST.get('last_name'),
                                                  dob=request.POST.get('dob'),
                                                  sex=request.POST.get('sex'),
-                                                 is_patient=True)
+                                                 is_patient=True,
+                                                 profile_reference=get_profile_reference())
+
                 doctor = Doctor.objects.get(id=request.POST.get('doctor'))
                 Patient.objects.create(profile=profile,
                                        doctor=doctor,
@@ -171,6 +175,17 @@ def add_patient(request):
                                        emergency_contact=request.POST.get('emergency_contact'),
                                        ec_phone_number=request.POST.get('ec_phone_number'),
                                        ec_email_address=request.POST.get('ec_email_address'))
+
+                if request.POST.get('ec_email_address'):
+                    send_mail(
+                        'Doc Your Patient',
+                        'Dear {} you have been logged in as an Emergency Contact for {}, if you would like to check'
+                        ' their progress please follow the following link! \n'
+                        'http://127.0.0.1:8000/register/{}/?reference={}'.format(profile.patient.emergency_contact, profile, profile.id, profile.profile_reference),
+                        'x16369733@student.ncirl.ie',
+                        [request.POST.get('ec_email_address')],
+                        fail_silently=False,
+                    )
                 return redirect('docmypatient')
 
             else:
@@ -181,10 +196,3 @@ def add_patient(request):
         doctors_list.append(doc)
 
     return render(request, 'docmypatient/addPatient.html', {'doctors': doctors_list})
-
-
-def check_user_exists(ppsn):
-    if Patient.objects.filter(ppsn=ppsn).exists():
-        return False
-    else:
-        return True

@@ -5,7 +5,8 @@
     <form method="POST" action="{% url 'editPatient' patient_id=patient.id %}">
         {% csrf_token %}
         <label for="doctor">Doctor: </label><select id="doctor" name="doctor" required>
-                                                <option disabled selected value> -- select a doctor -- </option>
+                                                <option value={{ patient.patient.doctor.id }}>{{ patient.patient.doctor }}</option>
+                                                <option disabled>----------</option>
                                                 {% for doc in doctors %}
                                                      <option value={{ doc.id }}>{{ doc }}</option>
                                                 {% endfor %}
@@ -18,6 +19,8 @@
         <label for="dob">Date of Birth: </label><input id="dob" type="date" name="dob" value="{{ dob }}">
         <br>
         <label for="sex">Sex: </label><select id="sex" name="sex">
+                                        <option value={{ patient.sex}}>{{ patient.sex }}</option>
+                                        <option disabled>----------</option>
                                         <option value="Other">Other</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
