@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from users.models import Profile, Patient, Doctor
@@ -53,6 +54,52 @@ def patient(request, patient_id):
     except Exception as e:
         print(e)
         return redirect('docmypatient')
+
+
+def edit_patient_page(request, patient_id):
+    if request.method == 'POST':
+        patient = Profile.objects.get(id=patient_id)
+        doctors = Doctor.objects.all()
+        doctors_list = []
+        for doc in doctors:
+            doctors_list.append(doc)
+        date = patient.dob.strftime('%Y-%m-%d')
+        return render(request, 'docmypatient/editPatient.html', {'patient': patient,
+                                                                 'dob': date,
+                                                                 'doctors': doctors_list,
+                                                                 'patient_id': patient_id})
+    else:
+        return render(request, 'docmypatient/patientZone.html')
+
+
+def edit_patient(request, patient_id):
+    if request.method == 'POST':
+        profile = Profile.objects.get(id=patient_id)
+        patient_profile_id = profile.patient.id
+        doctor = Doctor.objects.get(id=request.POST.get('doctor'))
+        Profile.objects.filter(id=patient_id).update(first_name=request.POST.get('first_name'),
+                                                     last_name=request.POST.get('last_name'),
+                                                     dob=request.POST.get('dob'),
+                                                     sex=request.POST.get('sex'))
+        Patient.objects.filter(id=patient_profile_id).update(doctor=doctor,
+                                                             address=request.POST.get('address'),
+                                                             phone_number=request.POST.get('phone_number'),
+                                                             ppsn=request.POST.get('ppsn'),
+                                                             medical_card_num=request.POST.get('medical_card_num'),
+                                                             emergency_contact=request.POST.get('emergency_contact'),
+                                                             ec_phone_number=request.POST.get('ec_phone_number'),
+                                                             ec_email_address=request.POST.get('ec_email_address'))
+
+        return redirect('patientPage', patient_id)
+    else:
+        return render(request, 'docmypatient/patientZone.html')
+
+
+def delete_patient(request, patient_id):
+    if request.method == 'POST':
+        Profile.objects.filter(id=patient_id).delete()
+
+    return redirect('docmypatient')
 
 
 def add_comment(request, patient_id):

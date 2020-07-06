@@ -12,6 +12,10 @@
         <h4>PPSN: {{ patient.patient.ppsn }}</h4>
         <h4>Medical Card Number: {{ patient.patient.medical_card_num }}</h4>
 		<h4>Emergency Contact: {{ patient.patient.emergency_contact }}</h4>
+        <form method="POST" action="{% url 'editPatientPage' patient_id=patient.id %}">
+            {% csrf_token %}
+            <button type="submit">Edit Patient</button>
+        </form>
     </div>
 </div>
 
