@@ -2,48 +2,96 @@
 {% load static %}
 {% block content %}
 
-    <form method="POST">
+    <form class ="adding-form" method="POST">
         {% csrf_token %}
-        <label for="doctor">Doctor: </label><select id="doctor" name="doctor">
-                                                <option disabled selected value> -- select a doctor -- </option>
-                                                {% for doc in doctors %}
-                                                     <option value={{ doc.id }}>{{ doc }}</option>
-                                                {% endfor %}
-                                            </select>
-        <br>
-        <label for="first_name">First Name: </label><input id="first_name" type="text" name="first_name" required>
-        <br>
-        <label for="last_name">Last Name: </label><input id="last_name" type="text" name="last_name" required>
-        <br>
-        <label for="dob">Date of Birth: </label><input id="dob" type="date" name="dob">
-        <br>
-        <label for="sex">Sex: </label><select id="sex" name="sex">
-                                        <option value="Other">Other</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                    </select>
-        <br>
-        <label for="address">Address: </label><input id="address" type="text" name="address" required>
-        <br>
-        <label for="phone_number">Phone Number: </label><input id="phone_number" type="text" name="phone_number">
-        <br>
-        <label for="ppsn">PPSN: </label><input id="ppsn" type="text" name="ppsn" required>
-        <br>
-        <label for="medical_card_num">Medical Card Number: </label><input id="medical_card_num" type="text" name="medical_card_num">
-        <br>
-        <label for="emergency_contact">Emergency Contact: </label><input id="emergency_contact" type="text" name="emergency_contact">
-        <br>
-        <label for="ec_phone_number">EC Phone Number: </label><input id="ec_phone_number" type="number" name="ec_phone_number">
-        <br>
-        <label for="ec_email_address">EC Email Address: </label><input id="ec_email_address" type="text" name="ec_email_address">
-        <br>
-        <button type="submit"> Submit </button>
-        <br>
+
+        <div class="add-patient-title">
+            <h2> Add new patient</h2>
+            <p class="form-text">
+                Please complete fields below and press 'Submit'
+            </p>
+        </div>
+
+        <div class="add-item">
+        <label for="doctor" class="form-label">Doctor: </label>
+            <select id="doctor" class="form-input" name="doctor">
+                <option disabled selected value> -- Select a doctor -- </option>
+                    {% for doc in doctors %}
+                <option value={{ doc.id }}>{{ doc }}</option>
+                    {% endfor %}
+            </select>
+        </div>
+
+        <div class="add-item">
+            <label for="first_name" class="form-label">First Name: </label>
+            <input type="text" class="form-input" id="first_name" name="first_name" required placeholder="Enter First name(s)">
+        </div>
+
+        <div class="add-item">
+            <label for="last_name" class="form-label">Last Name: </label>
+            <input type="text" class="form-input" id="last_name" name="last_name" required placeholder="Enter Last name">
+        </div>
+
+        <div class="add-item">
+            <label for="dob" class="form-label">Date of Birth: </label>
+            <input id="dob" class="form-input" type="date" name="dob" required placeholder="Enter DOB>
+        </div>
+
+        <div class="add-item">
+        <label for="sex" class="form-label">Sex: </label>
+            <select id="sex" name="sex" class="form-input">
+                <option value="Other">Other</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+
+        <div class="add-item">
+            <label for="address" class="form-label">Address: </label>
+            <input type="text" class="form-input" id="address" name="address" required placeholder="Enter address">
+        </div>
+
+
+        <div class="add-item">
+            <label for="phone_number" class="form-label">Phone Number: </label>
+            <input id="phone_number" class="form-input" type="text" name="phone_number" placeholder="+353">
+        </div>
+
+        <div class="add-item">
+            <label for="ppsn" class="form-label">PPSN: </label>
+            <input id="ppsn" class="form-input" type="text" name="ppsn" required placeholder="Enter PPSN">
+        </div>
+
+        <div class="add-item">
+            <label for="medical_card_num" class="form-label">Medical Card Number: </label>
+            <input id="medical_card_num" class="form-input" type="text" name="medical_card_num" required  placeholder="Enter Medical Car No.">
+        </div>
+
+        <div class="add-item">
+            <label for="emergency_contact" class="form-label">Emergency Contact: </label>
+            <input id="emergency_contact" class="form-input" type="text" name="emergency_contact" required  placeholder="Enter Emergency contact">
+        </div>
+
+        <div class="add-item">
+            <label for="ec_phone_number" class="form-label">EC Phone Number: </label>
+            <input id="ec_phone_number" class="form-input" type="number" name="ec_phone_number" placeholder="+353">
+        </div>
+
+        <div class="add-item">
+            <label for="ec_email_address" class="form-label">EC Email Address: </label>
+            <input id="ec_email_address" class="form-input" type="text" name="ec_email_address" placeholder="Enter Emergency contact email">
+        </div>
+
+        <div class="add-item">
+            <button class="adding-form-btn" type="submit"> Submit </button>
+        </div>
+
         {% if messages %}
             {% for message in messages %}
                 {{ message }}
             {% endfor %}
         {% endif %}
+
     </form>
 
 

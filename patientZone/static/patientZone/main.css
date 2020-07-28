@@ -8,16 +8,24 @@ h1, h2, h3, h4, h5, h6 {
   color: #444444;
 }
 
+h5 {
+    font-size: 18px;
+}
+
 ul {
   margin: 0;
+}
+
+table {
+    width: 1050px;
 }
 
 .bg-steel {
   background-color: #1167b1;
 }
 
-.site-header .navbar-nav .nav-link {
-  color: #060d12;
+.site-header .navbar-nav .nav-item .nav-link {
+  color: white;
 }
 
 .site-header .navbar-nav .nav-link:hover {
@@ -28,6 +36,7 @@ ul {
   font-weight: 500;
 }
 
+
 .content-section {
   background: #ffffff;
   padding: 10px 20px;
@@ -36,6 +45,258 @@ ul {
   margin-bottom: 20px;
 }
 
+/* .container {
+        width: 100%;
+        margin-right: 160px;
+        margin-left: 160px;
+        height: 50px;
+    }
+*/
+.container {
+        height: 50px;
+}
+
+
+.btn-form {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+#add-patient-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 12px 24px;
+    background-color: white;
+    border: 2px solid #0eb551;
+    border-radius: 15px;
+    transition-duration: 0.4s;
+    box-shadow: 5px 4px 7px;
+
+}
+
+#add-patient-btn:hover {
+    color: #ffffff;
+    background-color: #0eb551;
+    box-shadow: 5px 4px 7px;
+
+}
+
+.article-metadata{
+    font-size:15px;
+
+}
+
+.main-page-title{
+      font-size: 34px;
+      font-family: "Georgia";
+      font weight: bold;
+}
+
+}
+
+/* Adding patient page*/
+.adding-form {
+    font-size: 18px;
+    font-family: "Georgia";
+
+}
+
+.adding-form * {
+      box-sizing: border-box;
+      line-height: normal;
+}
+
+.add-patient-title {
+        font-weight: 400;
+        font-family: "Georgia";
+}
+
+.form-text{
+        font-size: 16px;
+        font-family: "Georgia";
+}
+
+.add-item {
+        display: flex;
+        flex-direction: column;
+}
+.add-item > * {
+        align-self: flex-start;
+}
+
+.form-label{
+        font-weight: 600;
+        font-size: 20px;
+        padding-top: 20px;
+
+}
+
+.form-input {
+        width: 100%;
+        max-width: 425px;
+        font-size: 23px;
+        border: 2px solid;
+        border-color: #999696;
+        border-radius: 6px;
+        background-color: #f2f2f2;
+        transition: background-color 0.25s, border-color 0.25s, color 0.25s;
+
+}
+
+.form-input:hover{
+    background-color: #def3ff;
+    border-color: #000000;
+}
+
+.form-input:focus {
+        background: #ffffff;
+}
+
+.form-input::placeholder{
+        color: #4f4d4d;
+}
+
+.adding-form-btn{
+        font-size: 21px;
+        padding: 13px 30px;
+        margin: 40px 0;
+        background-color: white;
+        border: 2px solid #45b4f7;
+        border-radius: 40px;
+        transition-duration: 0.4s;
+        box-shadow: 5px 4px 7px;
+}
+.adding-form-btn:hover {
+    color: #ffffff;
+    background-color: #45b4f7;
+    box-shadow: 5px 4px 7px;
+}
+
+#submitBtn {
+    display: inline-flex;
+    margin-right: 16px;
+    margin-left: 6px;
+}
+
+
+#deleteForm {
+    display: inline-block
+}
+
+.delete-patient-btn{
+        font-size: 21px;
+        padding: 13px 30px;
+        background-color: white;
+        border: 2px solid #fc4242;
+        border-radius: 40px;
+        transition-duration: 0.4s;
+        box-shadow: 5px 5px 5px;
+}
+
+.delete-patient-btn:hover {
+    color: #ffffff;
+    background-color: #fc4242;
+
+}
+
+/* Patient page CSS*/
+
+.patient-detail-title{
+        font-size: 32px;
+        font-family: "Georgia";
+        font-weight: 400;
+}
+
+table {
+    width: 1050px;
+}
+
+th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 8px;
+    text-align: left;
+    font-size:20px;
+    font-family: arial
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+#edit-btn{
+        font-size: 17px;
+        padding: 10px 20px;
+        margin: 15px 0;
+        font weight: 400;
+        background-color: white;
+        border: 2px solid #fcdd42;
+        border-radius: 15px;
+        transition-duration: 0.4s;
+        box-shadow: 5px 5px 5px;
+
+}
+
+#edit-btn:hover{
+    color: #ffffff;
+    background-color: #fcdd42;
+    color: black;
+    font-weight: bold;
+}
+
+#commentData{
+        width: 100%;
+        max-width: 425px;
+        font-size: 21px;
+        margin: 20px 0;
+        border: 2px solid;
+        border-color: #999696;
+        border-radius: 7px;
+        background-color: #f2f2f2;
+        transition: background-color 0.25s, border-color 0.25s, color 0.25s;
+
+}
+
+#commentData:hover{
+    background-color: white;
+    border-color: #000000;
+}
+
+#commentData::placeholder{
+        color: #4f4d4d;
+}
+
+.sub-btn{
+        font-size: 18px;
+        background-color: white;
+        border: 2px solid #0f0f0f;
+        border-radius: 35px;
+        margin: 16px 0;
+        padding: 5px 17px;
+        transition-duration: 0.4s;
+        box-shadow: 5px 4px 7px;
+}
+
+.sub-btn:hover {
+    color: #ffffff;
+    background-color: #0eb551;
+
+
+
+/* Comments css*/
+#commentDeleteForm {
+    display: inline;
+}
+
+#markForm {
+    display: inline;
+    margin-right: 5px;
+}
+
+/* BOOTSTRAP CSS */
 .article-title {
   color: #444444;
 }

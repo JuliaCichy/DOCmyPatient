@@ -2,50 +2,104 @@
 {% load static %}
 {% block content %}
 
-<div class="col-md-6">
+<div class="col-md-12">
     <div class="container-fluid" id="rightInfo">
-        <h3>Information</h3>
-        <h4>Last Name: {{ patient.last_name }}</h4>
-		<h4>First Name: {{ patient.first_name }}</h4>
-        <h4>Sex: {{ patient.sex }}</h4>
-        <h4>Address: {{ patient.patient.address }}</h4>
-        <h4>PPSN: {{ patient.patient.ppsn }}</h4>
-        <h4>Medical Card Number: {{ patient.patient.medical_card_num }}</h4>
-		<h4>Emergency Contact: {{ patient.patient.emergency_contact }}</h4>
-        <form method="POST" action="{% url 'editPatientPage' patient_id=patient.id %}">
+
+		<div class="patient-detail-title">
+		<p>Patient details</p>
+		</div>
+
+		<table>
+			<tr>
+				<td>Last Name</td>
+				<td>{{ patient.last_name }}</td>
+			</tr>
+			<tr>
+				<td>First Name</td>
+				<td>{{ patient.first_name }}</td>
+			</tr>
+			<tr>
+				<td>Sex</td>
+				<td>{{ patient.sex }}</td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td>{{ patient.patient.address }}</td>
+			</tr>
+				<tr>
+				<td>PPSN</td>
+				<td>{{ patient.patient.ppsn }}</td>
+			</tr>
+				<tr>
+				<td>Medical Card Number</td>
+				<td>{{ patient.patient.medical_card_num }}</td>
+			</tr>
+				<tr>
+				<td>Emergency Contact</td>
+				<td>{{ patient.patient.emergency_contact }}</td>
+			</tr>
+		</table>
+
+        <form  class="btn-form" method="POST" action="{% url 'editPatientPage' patient_id=patient.id %}">
             {% csrf_token %}
-            <button type="submit">Edit Patient</button>
+            <button id="edit-btn" type="submit">Edit Patient</button>
         </form>
+
+		<form method="POST" action="{% url 'addPatientComment' patient_id=patient.id %}">
+			{% csrf_token %}
+			<label for="commentData">Comment:</label><br>
+			<input id="commentData" type="text" name="commentData"><br>
+			<label for="forPatient">For Patient?</label><br>
+			<input type="checkbox" id="forPatient" name="forPatient" value="True"><br>
+			<button type="submit"> Submit </button>
+		</form>
+
     </div>
 </div>
 
-<form method="POST" action="{% url 'addPatientComment' patient_id=patient.id %}">
-    {% csrf_token %}
-    <input id="commentData" type="text" name="commentData">
-    <button type="submit"> Submit </button>
-</form>
-
 {% for comment in comments %}
-<article class="media content-section">
+<article class="media content-section" id="{{ comment.id }}">
   <div class="media-body">
 	<div class="article-metadata">
-		<p>{{ comment }}</p>
-		<p>{{ comment.staff_name }}</p>
+		<h5><b>Comment:</b></h5>
+		<h6>{{ comment }}</h6>
+		<br>
+
+		<h5><b>Staff Member:</b></h5>
+		<h6>{{ comment.staff_name }}</h6>
+		<br>
+
+		<h5><b>Date:</b></h5>
 		<p>{{ comment.date_posted }}</p>
+		<br>
+
+		<h5><b>Comment Opened:</b></h5>
 		<p>{{ comment.opened }}</p>
+		<br>
+
+		<h5><b>Doctor/Nurse?</b></h5>
+
 		{% if comment.staff_name.profile.is_nurse %}
-			<p>THIS WAS POSTED BY A NURSE</p>
+			<p>Posted by a nurse</p>
 		{% elif comment.staff_name.profile.is_doctor %}
-			<p>THIS WAS POSTED BY A DOCTOR</p>
+			<p>Posted by a doctor</p>
 		{% endif %}
 		{% if not comment.opened %}
-			<form method="POST" action="{% url 'openPatientComment' patient_id=patient.id comment_id=comment.id %}">
+			<form method="POST" id="markForm" action="{% url 'openPatientComment' patient_id=patient.id comment_id=comment.id %}">
 				{% csrf_token %}
-				<button type="submit">Mark as Open</button>
+				<button id="mark-comment-open" type="submit">Mark as Open</button>
 			</form>
+		{% elif comment.opened %}
+			<script>
+				function changeColour () {
+				var id = "{{ comment.id }}"
+   					document.getElementById(id).style.backgroundColor = "#feffcc";
+				}
+				changeColour();
+			</script>
 		{% endif %}
 
-		<form method="POST" action="{% url 'deletePatientComment' patient_id=patient.id comment_id=comment.id %}">
+		<form method="POST" id="commentDeleteForm" action="{% url 'deletePatientComment' patient_id=patient.id comment_id=comment.id %}">
 		    {% csrf_token %}
 		    <button type="submit">DELETE</button>
 		</form>
@@ -53,4 +107,5 @@
   </div>
 </article>
 {% endfor %}
+
 {% endblock %}

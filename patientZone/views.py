@@ -35,7 +35,7 @@ def home(request):
         return render(request, 'docmypatient/patientZone.html', context)
 
     else:
-        return redirect('logout')
+        return redirect('profile')
 
 
 def patient(request, patient_id):
@@ -48,7 +48,7 @@ def patient(request, patient_id):
             pass
         else:
             raise Exception
-        context = {"comments": Comment.objects.filter(patient_id=patient_id),
+        context = {"comments": Comment.objects.filter(patient_id=patient_id).order_by('-date_posted'),
                    "patient": profile}
 
         return render(request, 'docmypatient/patientPage.html', context)
@@ -110,14 +110,21 @@ def add_comment(request, patient_id):
         # Get the comment and user details from the request
         comment = request.POST.get('commentData')
         user_id = request.user.id
+        patient_name = Profile.objects.get(id=patient_id)
         user = User.objects.get(id=user_id)
         now = datetime.datetime.now()
+        show_patient = False
+        if request.POST.get('forPatient') == "True":
+            show_patient = True
 
         # Post to the comments form
         comments_form = CommentForm(data={'comment': comment,
                                            'date_posted': now,
                                            'staff_name': user,
-                                           'patient_id': patient_id})
+                                           'pateint': patient_name,
+                                           'staff_id': user.profile.id,
+                                           'patient_id': patient_id,
+                                           'show_patient': show_patient})
         # Check if its vaild
         if comments_form.is_valid():
             # Create Comment object but don't save to database yet
@@ -125,7 +132,10 @@ def add_comment(request, patient_id):
             # Assign the current post to the comment
             new_comment.comment = comment
             new_comment.staff_name = user
+            new_comment.staff_id = user.profile.id
             new_comment.patient_id = patient_id
+            new_comment.patient = patient_name
+            new_comment.show_patient = show_patient
             # Save the comment to the database
             new_comment.save()
 

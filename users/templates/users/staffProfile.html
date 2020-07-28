@@ -1,0 +1,84 @@
+
+<div class="col-md-6">
+    <div class="container-fluid" id="rightInfo">
+		{% if user.profile.is_doctor %}
+			<h3>{{ user.profile }}</h3>
+			<table>
+				<tr>
+					<td>Last Name</td>
+					<td>{{ user.profile.last_name }}</td>
+				</tr>
+				<tr>
+					<td>First Name</td>
+					<td>{{ user.profile.first_name }}</td>
+				</tr>
+				<tr>
+					<td>Sex</td>
+					<td>{{ user.profile.sex }}</td>
+				</tr>
+				<tr>
+					<td>Field</td>
+					<td>{{ user.profile.doctor.field }}</td>
+				</tr>
+				<tr>
+					<td>Doctor Register Number</td>
+					<td>{{ user.profile.doctor.doc_reg_num }}</td>
+				</tr>
+			</table>
+		{% else %}
+			<h3>{{ user.profile }}</h3>
+			<table>
+				<tr>
+					<td>Last Name</td>
+					<td>{{ user.profile.last_name }}</td>
+				</tr>
+				<tr>
+					<td>First Name</td>
+					<td>{{ user.profile.first_name }}</td>
+				</tr>
+				<tr>
+					<td>Sex</td>
+					<td>{{ user.profile.sex }}</td>
+				</tr>
+				<tr>
+					<td>Ward</td>
+					<td>{{ user.profile.nurse.ward }}</td>
+				</tr>
+			</table>
+		{% endif %}
+    </div>
+</div>
+
+{% for comment in comments %}
+	<article class="media content-section" id="{{ comment.id }}">
+	  <div class="media-body">
+		<div class="article-metadata">
+			<h5><b>Patient:</b></h5>
+			<a href="{% url 'patientPage' patient_id=comment.patient_id %}">{{ comment.patient }}</a>
+			<br>
+
+			<h5><b>Comment:</b></h5>
+			<h6>{{ comment }}</h6>
+			<br>
+
+			<h5><b>Date:</b></h5>
+			<p>{{ comment.date_posted }}</p>
+			<br>
+
+			<h5><b>Comment Opened:</b></h5>
+			<p>{{ comment.opened }}</p>
+			<br>
+
+			{% if comment.opened %}
+				<script>
+					function changeColour () {
+					var id = "{{ comment.id }}"
+						document.getElementById(id).style.backgroundColor = "#feffcc";
+					}
+					changeColour();
+				</script>
+			{% endif %}
+		</div>
+	  </div>
+	</article>
+{% endfor %}

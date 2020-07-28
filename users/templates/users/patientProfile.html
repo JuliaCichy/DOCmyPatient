@@ -1,0 +1,78 @@
+<div class="col-md-6">
+    <div class="container-fluid" id="rightInfo">
+        <h3>Patient detail</h3>
+		<table>
+			<tr>
+				<td>Last Name</td>
+				<td>{{ user.profile.last_name }}</td>
+			</tr>
+			<tr>
+				<td>First Name</td>
+				<td>{{ user.profile.first_name }}</td>
+			</tr>
+			<tr>
+				<td>Sex</td>
+				<td>{{ user.profile.sex }}</td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td>{{ user.profile.patient.address }}</td>
+			</tr>
+				<tr>
+				<td>PPSN</td>
+				<td>{{ user.profile.patient.ppsn }}</td>
+			</tr>
+				<tr>
+				<td>Medical Card Number</td>
+				<td>{{ user.profile.patient.medical_card_num }}</td>
+			</tr>
+				<tr>
+				<td>Emergency Contact</td>
+				<td>{{ user.profile.patient.emergency_contact }}</td>
+			</tr>
+		</table>
+    </div>
+</div>
+
+{% for comment in comments %}
+	{% if comment.show_patient %}
+		<article class="media content-section" id="{{ comment.id }}">
+		  <div class="media-body">
+			<div class="article-metadata">
+				<h5><b>Comment:</b></h5>
+				<h6>{{ comment }}</h6>
+				<br>
+
+				<h5><b>Staff Member:</b></h5>
+				<h6>{{ comment.staff_name }}</h6>
+				<br>
+
+				<h5><b>Date:</b></h5>
+				<p>{{ comment.date_posted }}</p>
+				<br>
+
+				<h5><b>Comment Opened:</b></h5>
+				<p>{{ comment.opened }}</p>
+				<br>
+
+				<h5><b>Doctor/Nurse?</b></h5>
+
+				{% if comment.staff_name.profile.is_nurse %}
+					<p>THIS WAS POSTED BY A NURSE</p>
+				{% elif comment.staff_name.profile.is_doctor %}
+					<p>THIS WAS POSTED BY A DOCTOR</p>
+				{% endif %}
+				{% if comment.opened %}
+					<script>
+						function changeColour () {
+						var id = "{{ comment.id }}"
+		   					document.getElementById(id).style.backgroundColor = "#feffcc";
+						}
+						changeColour();
+					</script>
+				{% endif %}
+			</div>
+		  </div>
+		</article>
+	{% endif %}
+{% endfor %}

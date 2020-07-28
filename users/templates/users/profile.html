@@ -1,4 +1,9 @@
 {% extends "docmypatient/base.html" %}
+{% load static %}
 {% block content %}
-    <h1> {{ user.username }}</h1>
-{% endblock content %}
+    {% if user.profile.is_patient %}
+        {% include "users/patientProfile.html" %}
+    {% else %}
+        {% include "users/staffProfile.html" %}
+    {% endif %}
+{% endblock %}
