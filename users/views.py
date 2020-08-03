@@ -3,12 +3,18 @@ from django.contrib import messages
 from .forms import UserRegisterForm
 from .models import Profile
 from patientZone.models import Comment
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 
 
+def redirect_main_page(request):
+    return redirect('docmypatient')
+
+
 def register(request, patient_id=None):
+    if request.user.is_authenticated():
+        return redirect('profile')
+
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -42,6 +48,7 @@ def register(request, patient_id=None):
 @login_required
 def profile(request):
     if request.user.profile.is_patient:
+        print("Hello")
         comments = Comment.objects.filter(patient_id=request.user.profile.id).order_by('-date_posted')
     else:
         comments = Comment.objects.filter(staff_id=request.user.profile.id).order_by('-date_posted')

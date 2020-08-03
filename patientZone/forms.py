@@ -1,4 +1,4 @@
-from .models import Comment
+from .models import Comment, UploadedFile
 from users.models import Profile, Patient
 from django import forms
 

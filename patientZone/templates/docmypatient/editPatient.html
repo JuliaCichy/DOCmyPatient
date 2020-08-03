@@ -59,7 +59,7 @@
         <div class="add-item">
             <label for="phone_number" class="form-label" >Phone Number: </label>
             <input id="phone_number" class="form-input" type="text" name="phone_number" value="{{ patient.patient.phone_number }}" placeholder="+353">
-        <div>
+        </div>
 
         <div class="add-item">
             <label for="ppsn" class="form-label">PPSN: </label>
@@ -98,9 +98,9 @@
 
 
         <form method="POST" id="deleteForm" action="{% url 'deletePatient' patient_id=patient.id %}">
-            <div>
-            <button class="delete-patient-btn" type="submit">Delete Patient</button>
-            </div>
+
+            <button id="delete-patient-btn" type="submit">Delete Patient</button>
+
             {% csrf_token %}
         </form>
 

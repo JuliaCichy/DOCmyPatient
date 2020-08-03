@@ -16,3 +16,16 @@ class Comment(models.Model):
 
 	def __str__(self):
 		return self.comment
+
+
+class UploadedFile(models.Model):
+	file_title = models.CharField(max_length=1000)
+	date_posted = models.DateTimeField(default=timezone.now)
+	staff_name = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+	staff_id = models.IntegerField()
+	patient_id = models.IntegerField()
+	patient = models.CharField(max_length=100)
+	uploaded_file = models.FileField('uploaded_files/')
+
+	def __str__(self):
+		return self.file_title

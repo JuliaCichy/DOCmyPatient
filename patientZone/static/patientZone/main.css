@@ -4,20 +4,19 @@ body {
   margin-top: 5rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, {
   color: #444444;
-}
 
-h5 {
-    font-size: 18px;
 }
 
 ul {
   margin: 0;
+
 }
 
 table {
     width: 1050px;
+    border-radius: 35px;
 }
 
 .bg-steel {
@@ -43,8 +42,26 @@ table {
   border: 1px solid #dddddd;
   border-radius: 20px;
   margin-bottom: 20px;
+  display: flex;
 }
 
+#download-file {
+    margin-top: 10px;
+    font-family: "Tahoma, Geneva, sans-serif";
+    font-size: 19px;
+    padding: 8px 25px;
+    background-color: white;
+    border: 2.5px solid #cf30f2;
+    border-radius: 40px;
+    transition-duration: 0.4s;
+    box-shadow: 5px 5px 5px;
+}
+#download-file:hover{
+        background-color: #cf30f2;
+        border: 2px solid #000000;
+        color: white;
+
+}
 /* .container {
         width: 100%;
         margin-right: 160px;
@@ -85,24 +102,17 @@ table {
 
 }
 
-.article-metadata{
-    font-size:15px;
-
-}
-
-.main-page-title{
+.main-page-title {
       font-size: 34px;
-      font-family: "Georgia";
+      font-family: "Tahoma, Geneva, sans-serif";
       font weight: bold;
-}
-
 }
 
 /* Adding patient page*/
 .adding-form {
     font-size: 18px;
-    font-family: "Georgia";
-
+    font-family: "Tahoma, Geneva, sans-serif";
+    display: inline;
 }
 
 .adding-form * {
@@ -112,12 +122,12 @@ table {
 
 .add-patient-title {
         font-weight: 400;
-        font-family: "Georgia";
+        font-family: "Tahoma, Geneva, sans-serif";
 }
 
-.form-text{
+.form-text {
         font-size: 16px;
-        font-family: "Georgia";
+        font-family: "Tahoma, Geneva, sans-serif";
 }
 
 .add-item {
@@ -128,7 +138,7 @@ table {
         align-self: flex-start;
 }
 
-.form-label{
+.form-label {
         font-weight: 600;
         font-size: 20px;
         padding-top: 20px;
@@ -147,7 +157,7 @@ table {
 
 }
 
-.form-input:hover{
+.form-input:hover {
     background-color: #def3ff;
     border-color: #000000;
 }
@@ -156,11 +166,11 @@ table {
         background: #ffffff;
 }
 
-.form-input::placeholder{
+.form-input::placeholder {
         color: #4f4d4d;
 }
 
-.adding-form-btn{
+.adding-form-btn {
         font-size: 21px;
         padding: 13px 30px;
         margin: 40px 0;
@@ -183,39 +193,36 @@ table {
 }
 
 
-#deleteForm {
-    display: inline-block
+#delete-patient-btn {
+    font-family: "Tahoma, Geneva, sans-serif";
+    font-size: 21px;
+    padding: 10px 25px;
+    background-color: white;
+    border: 2px solid #fc4242;
+    border-radius: 40px;
+    transition-duration: 0.4s;
+    box-shadow: 5px 5px 5px;
 }
 
-.delete-patient-btn{
-        font-size: 21px;
-        padding: 13px 30px;
-        background-color: white;
-        border: 2px solid #fc4242;
-        border-radius: 40px;
-        transition-duration: 0.4s;
-        box-shadow: 5px 5px 5px;
-}
-
-.delete-patient-btn:hover {
+#delete-patient-btn:hover {
     color: #ffffff;
     background-color: #fc4242;
-
 }
 
 /* Patient page CSS*/
 
-.patient-detail-title{
+.patient-detail-title {
         font-size: 32px;
-        font-family: "Georgia";
+        font-family: "Tahoma, Geneva, sans-serif";
         font-weight: 400;
 }
 
 table {
     width: 1050px;
+
 }
 
-th, td{
+th, td {
     border: 1px solid black;
     border-collapse: collapse;
     padding: 8px;
@@ -227,74 +234,192 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
-#edit-btn{
+#edit-btn {
         font-size: 17px;
         padding: 10px 20px;
         margin: 15px 0;
-        font weight: 400;
+        font weight: 500;
         background-color: white;
-        border: 2px solid #fcdd42;
+        border: 3px solid #ffc30f;
         border-radius: 15px;
         transition-duration: 0.4s;
         box-shadow: 5px 5px 5px;
 
 }
 
-#edit-btn:hover{
+#edit-btn:hover {
     color: #ffffff;
-    background-color: #fcdd42;
+    background-color: #fad311;
     color: black;
     font-weight: bold;
 }
 
-#commentData{
-        width: 100%;
-        max-width: 425px;
+#commentData {
+        width: 50%;
+        line-height: 2;
         font-size: 21px;
-        margin: 20px 0;
+        margin: 5px 0;
         border: 2px solid;
         border-color: #999696;
         border-radius: 7px;
         background-color: #f2f2f2;
         transition: background-color 0.25s, border-color 0.25s, color 0.25s;
-
 }
 
-#commentData:hover{
+#comment-title{
+        font-size: 21px;
+        font-family: "Tahoma, Geneva, sans-serif";
+        font-weight: 600;
+}
+
+h5 {
+    font-size: 20px;
+    font-family: "Tahoma, Geneva, sans-serif";
+}
+
+#patientTable {
+    width: 1050px;
+}
+
+.patient-text {
+    font-size: 19px;
+    margin-right: 15px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid lightgrey;
+}
+
+#staffPatientTable {
+    width: 1050px;
+    margin-bottom: 30px;
+}
+
+#commentData:hover {
     background-color: white;
     border-color: #000000;
 }
 
-#commentData::placeholder{
+#commentData::placeholder {
         color: #4f4d4d;
 }
 
-.sub-btn{
+#comment-sub-btn {
         font-size: 18px;
-        background-color: white;
-        border: 2px solid #0f0f0f;
-        border-radius: 35px;
+        font-weight: 400
+        background-color: #ffffff;
+        border: 2.5px solid #09bd48 ;
+        border-radius: 30px;
         margin: 16px 0;
-        padding: 5px 17px;
+        padding: 9px 18px;
         transition-duration: 0.4s;
         box-shadow: 5px 4px 7px;
 }
 
-.sub-btn:hover {
+#comment-sub-btn:hover {
     color: #ffffff;
     background-color: #0eb551;
+    border: 2px solid #09bd48;
+}
+
+.sub-btn {
+        font-size: 18px;
+        font-weight: 400;
+        background-color: white;
+        border: 2.5px solid skyblue;
+        border-radius: 30px;
+        margin: 16px 0;
+        padding: 9px 18px;
+        transition-duration: 0.4s;
+        box-shadow: 5px 4px 7px;
+
+}
+
+.sub-btn:hover {
+    background-color: skyblue;
+    border: 2px solid skyblue;
+}
+
+
+#patient-check {
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 15px;
+        border-bottom: 2px solid green;
+        margin-bottom: 18px;
+}
+
+#makeComment {
+    display: inline;
+    margin-right: 5px;
+
+}
+
+#nok-checkbox {
+        cursor: pointer;
+        padding: padding: 7px 17px;
+}
 
 
 
 /* Comments css*/
-#commentDeleteForm {
+.commentDeleteForm {
+    display: inline;
+    margin-left: 10px;
+}
+
+#deleteForm {
     display: inline;
 }
 
-#markForm {
-    display: inline;
+#mark-comment-open {
+    font-size: 19px;
+    font-family: "Tahoma, Geneva, sans-serif";
     margin-right: 5px;
+    background-color: white;
+    border: 2.5px solid #308bf2;
+    border-radius: 35px;
+    margin: 16px 0;
+    padding: 7px 19px;
+    transition-duration: 0.4s;
+    box-shadow: 5px 4px 7px;
 }
+
+#mark-comment-open:hover{
+    background-color: #308bf2;
+    border: 2px solid #0f0f0f;
+    color: white;
+    font-family: "Tahoma, Geneva, sans-serif";
+
+
+}
+
+.markForm {
+    display: inline;
+}
+
+#forPatient {
+    margin: 6px;
+}
+
+#delete-btn {
+    margin-right: 2px;
+    font-size: 19px;
+    font-family: "Tahoma, Geneva, sans-serif";
+    background-color: white;
+    border: 2.5px solid red;
+    border-radius: 35px;
+    margin: 16px 0;
+    padding: 7px 19px;
+    transition-duration: 0.4s;
+    box-shadow: 5px 4px 7px;
+}
+#delete-btn:hover {
+    background-color: red;
+    border: 2px solid #0f0f0f;
+    color: white;
+    font-family: "Tahoma, Geneva, sans-serif";
+
+}
+
 
 /* BOOTSTRAP CSS */
 .article-title {
@@ -319,7 +444,6 @@ a.article-title:hover {
 .article-metadata {
   padding-bottom: 1px;
   margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
 }
 
 .article-metadata a:hover {

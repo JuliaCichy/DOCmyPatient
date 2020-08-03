@@ -1,9 +1,9 @@
 
-<div class="col-md-6">
+<div class="col-md-12">
     <div class="container-fluid" id="rightInfo">
 		{% if user.profile.is_doctor %}
 			<h3>{{ user.profile }}</h3>
-			<table>
+			<table id="staffPatientTable">
 				<tr>
 					<td>Last Name</td>
 					<td>{{ user.profile.last_name }}</td>
@@ -62,18 +62,18 @@
 			<br>
 
 			<h5><b>Date:</b></h5>
-			<p>{{ comment.date_posted }}</p>
+			<h6>{{ comment.date_posted }}</h6>
 			<br>
 
 			<h5><b>Comment Opened:</b></h5>
-			<p>{{ comment.opened }}</p>
+			<h6>{{ comment.opened }}</h6>
 			<br>
 
 			{% if comment.opened %}
 				<script>
 					function changeColour () {
 					var id = "{{ comment.id }}"
-						document.getElementById(id).style.backgroundColor = "#feffcc";
+						document.getElementById(id).style.backgroundColor = "#fcfb95";
 					}
 					changeColour();
 				</script>

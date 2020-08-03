@@ -9,7 +9,7 @@
 		<p>Patient details</p>
 		</div>
 
-		<table>
+		<table id="patientTable">
 			<tr>
 				<td>Last Name</td>
 				<td>{{ patient.last_name }}</td>
@@ -45,64 +45,110 @@
             <button id="edit-btn" type="submit">Edit Patient</button>
         </form>
 
-		<form method="POST" action="{% url 'addPatientComment' patient_id=patient.id %}">
+		<form method="POST" id="makeComment" action="{% url 'addPatientComment' patient_id=patient.id %}">
 			{% csrf_token %}
-			<label for="commentData">Comment:</label><br>
-			<input id="commentData" type="text" name="commentData"><br>
-			<label for="forPatient">For Patient?</label><br>
-			<input type="checkbox" id="forPatient" name="forPatient" value="True"><br>
-			<button type="submit"> Submit </button>
+			<label id="comment-title" for="commentData">Comment:</label><br>
+			<input maxlength="600" id="commentData" type="text" name="commentData" placeholder="Enter your comment (max 600)."><br>
+			<label id="for-patient" for="forPatient">* Click to update next of kin</label>
+			<input type="checkbox" id="forPatient" name="forPatient" value="True">
+			<br>
+			<button id="comment-sub-btn" type="submit"> Submit </button><br>
 		</form>
 
+		<form method="POST" enctype="multipart/form-data" action="{% url 'uploadPatientFile' patient_id=patient.id %}">
+			{% csrf_token %}
+			<input type="file" name="document">
+			<button class="sub-btn" type="submit"> Upload </button>
+		</form>
     </div>
 </div>
 
+<br>
+<h4>File Upload:</h4>
+{% for file in files %}
+<article class="media content-section">
+  <div class="media-body">
+	<div class="article-metadata">
+		<h5><b>File Name:</b></h5>
+		<h6 class="patient-text">{{ file.file_title }}</h6>
+		<br>
+
+		<h5><b>Staff Member:</b></h5>
+		<h6 class="patient-text">{{ file.staff_name }}</h6>
+		<br>
+
+		<h5><b>Upload Date:</b></h5>
+		<h6 class="patient-text">{{ file.date_posted }}</h6>
+		<br>
+
+		<h6><b>Doctor/Nurse?</b></h6>
+
+		{% if file.staff_name.profile.is_nurse %}
+			<h6 class="patient-text">Posted by a nurse</h6>
+		{% elif file.staff_name.profile.is_doctor %}
+			<h6 class="patient-text">Posted by a doctor</h6>
+		{% endif %}
+
+		<form method="POST" class="downloadFileBtn" action="{% url 'downloadFile' patient_id=patient.id file_id=file.id %}">
+		    {% csrf_token %}
+		    <button id="download-file" type="submit">Download</button>
+		</form>
+	</div>
+  </div>
+</article>
+{% endfor %}
+
+<h4>Comment:</h4>
 {% for comment in comments %}
 <article class="media content-section" id="{{ comment.id }}">
   <div class="media-body">
 	<div class="article-metadata">
 		<h5><b>Comment:</b></h5>
-		<h6>{{ comment }}</h6>
+		<h6 class="patient-text">{{ comment }}</h6>
 		<br>
 
 		<h5><b>Staff Member:</b></h5>
-		<h6>{{ comment.staff_name }}</h6>
+		<h6 class="patient-text">{{ comment.staff_name }}</h6>
 		<br>
 
 		<h5><b>Date:</b></h5>
-		<p>{{ comment.date_posted }}</p>
+		<h6 class="patient-text">{{ comment.date_posted }}</h6>
 		<br>
 
 		<h5><b>Comment Opened:</b></h5>
-		<p>{{ comment.opened }}</p>
+		<h6 class="patient-text">{{ comment.opened }}</h6>
 		<br>
 
-		<h5><b>Doctor/Nurse?</b></h5>
+		<h6><b>Doctor/Nurse?</b></h6>
 
 		{% if comment.staff_name.profile.is_nurse %}
-			<p>Posted by a nurse</p>
+			<h6 class="patient-text">Posted by a nurse</h6>
 		{% elif comment.staff_name.profile.is_doctor %}
-			<p>Posted by a doctor</p>
+			<h6 class="patient-text">Posted by a doctor</h6>
 		{% endif %}
 		{% if not comment.opened %}
-			<form method="POST" id="markForm" action="{% url 'openPatientComment' patient_id=patient.id comment_id=comment.id %}">
+
+			<form method="POST" class="markForm" action="{% url 'openPatientComment' patient_id=patient.id comment_id=comment.id %}">
 				{% csrf_token %}
 				<button id="mark-comment-open" type="submit">Mark as Open</button>
 			</form>
+
 		{% elif comment.opened %}
 			<script>
 				function changeColour () {
 				var id = "{{ comment.id }}"
-   					document.getElementById(id).style.backgroundColor = "#feffcc";
+   					document.getElementById(id).style.backgroundColor = "#fcfb95";
 				}
 				changeColour();
 			</script>
 		{% endif %}
 
-		<form method="POST" id="commentDeleteForm" action="{% url 'deletePatientComment' patient_id=patient.id comment_id=comment.id %}">
+		<form method="POST" class="commentDeleteForm" action="{% url 'deletePatientComment' patient_id=patient.id comment_id=comment.id %}">
 		    {% csrf_token %}
-		    <button type="submit">DELETE</button>
+		    <button id="delete-btn" type="submit">Delete</button>
 		</form>
+
+
 	</div>
   </div>
 </article>
